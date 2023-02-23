@@ -1,6 +1,6 @@
 # получить сумму, разность, произведение, воспроизвести a в степень b,
 # a поделить по модулю b и выполнить целочисленное деление a на b.
-print("task_1")
+print('task_1')
 a = 5
 b = 3
 print(a, b)
@@ -12,7 +12,7 @@ print('modul =', a % b)
 print('floor_division =', a // b)
 
 # расставить скобки, чтобы значение выражений не поменялось.
-print("task_2")
+print('task_2')
 x = 17 / 2 * 3 + 2
 parentheses_x = (((17 / 2) * 3) + 2)
 print(x)
@@ -35,7 +35,7 @@ print(x4)
 print(parentheses_x4)
 
 # даны действительные числа x и y.
-print("task_3")
+print('task_3')
 x = 3
 y = -5
 mod_x = abs(x)
