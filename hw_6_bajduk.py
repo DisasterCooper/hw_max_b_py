@@ -1,4 +1,5 @@
 from typing import Callable, Any
+from functools import wraps
 import datetime
 
 print('hw_6_task_1a')  # Лямбда-функция, на четное/нечетное.
@@ -39,16 +40,16 @@ print('hw_6_task_4')  # Декоратор к двум функциям, кот�
 time = datetime.datetime.now()
 
 
-def count_time_decorator(func):
-    def inner(*args):
+def count_time_decorator(func: Callable) -> Callable:
+    @wraps(func)
+    def inner(*args, **kwargs):
         start_time = time
-        result_ = func(*args)
         print(f'Начало работы функции {func.__name__}: {start_time}')
+        result_ = func(*args, **kwargs)
         end_time = time
         print(f'Функция {func.__name__} загружается {end_time - start_time} секунд')
-        print(f'Конец работы функции: {func.__name__}: {start_time}')
+        print(f'Конец работы функции: {func.__name__}: {end_time}')
         return result_
-
     return inner
 
 
