@@ -79,3 +79,30 @@ def min_ch2(numbers: list[int]) -> int | None:
 
 
 print(min_ch2([1, 15, -34]))
+
+print('hw_6_task_5**')
+
+
+def accept_str(string: str) -> float:
+    if string.isdigit():  # целое
+        print(f'Вы ввели положительное целое число {string}')
+        return int(string)
+    elif string[1:].isdigit():  # целое отрицательное число
+        print(f'Вы ввели отрицательное целое число {string}')
+        return int(string)
+    elif string.isdigit() and '.' in string:
+        print(f'Вы ввели дробное число {string}')
+        return float(string)  # дробь
+    elif string[1:] and string.count('.') == 1:  # отрицательная десятичная дробь
+        print(f'Вы ввели отрицательное дробное число {string}')
+        return float(string)
+    else:
+        print(f'Ошибка!Вы ввели некорректное число {string}')
+        return False
+
+
+accept_str('2')
+accept_str('-13')
+accept_str('-0.11')
+accept_str('0.15')
+accept_str('232dd')
