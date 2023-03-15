@@ -1,6 +1,6 @@
-from typing import Callable, Any
-from functools import wraps
 import datetime
+from functools import wraps
+from typing import Callable, Any
 
 print('hw_6_task_1a')  # Лямбда-функция, на четное/нечетное.
 # Функция принимает параметр (число), если четное, то выдает
@@ -50,6 +50,7 @@ def count_time_decorator(func: Callable) -> Callable:
         print(f'Функция {func.__name__} загружается {end_time - start_time} секунд')
         print(f'Конец работы функции: {func.__name__}: {end_time}')
         return result_
+
     return inner
 
 
@@ -81,28 +82,32 @@ def min_ch2(numbers: list[int]) -> int | None:
 print(min_ch2([1, 15, -34]))
 
 print('hw_6_task_5**')
+my_test_examples = [
+    '1', '-1', '0.1', '-0.1', '-0.1', '0',
+    '', 'a', '1aa', '--1', '1-', '1..1', '0.1a', '15 15', '-a12', '..1']
 
 
-def accept_str(string: str) -> float:
-    if string.isdigit():  # целое
-        print(f'Вы ввели положительное целое число {string}')
-        return int(string)
-    elif string[1:].isdigit():  # целое отрицательное число
-        print(f'Вы ввели отрицательное целое число {string}')
-        return int(string)
-    elif string.isdigit() and '.' in string:
-        print(f'Вы ввели дробное число {string}')
-        return float(string)  # дробь
-    elif string[1:] and string.count('.') == 1:  # отрицательная десятичная дробь
-        print(f'Вы ввели отрицательное дробное число {string}')
-        return float(string)
+def accept_str(some_str: str) -> int | float | None:
+    print(f'Вы ввели ', end='')
+    if some_str.isdigit():
+        print(f'положительное целое число {some_str}')
+        return int(some_str)
+    void_str = some_str.replace('-', '', 1).replace('.', '', 1)
+    if not void_str.isdigit() or ('-' in some_str and some_str[0] != '-'):
+        print(f'некорректное число {some_str}')
+        return None
+    if '.' in some_str:
+        num_format = 'дробное'
+        num = float(some_str)
     else:
-        print(f'Ошибка!Вы ввели некорректное число {string}')
-        return False
+        num_format = 'целое'
+        num = int(some_str)
+    if num >= 0:
+        num_sign = 'положительное число'
+    else:
+        num_sign = 'отрицательное число'
+    print(f'{num_format} {num_sign} {some_str}')
+    return num
 
 
-accept_str('2')
-accept_str('-13')
-accept_str('-0.11')
-accept_str('0.15')
-accept_str('232dd')
+print(list(map(accept_str, my_test_examples)))
