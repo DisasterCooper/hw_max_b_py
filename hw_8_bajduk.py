@@ -1,5 +1,6 @@
 import json
 import csv
+import random
 
 print('hw_8_task_2')
 line_1 = "Monday\n"
@@ -15,11 +16,11 @@ with open('days.txt', 'a') as file:
 
 print('hw_8_task_3')
 simple_dict = {
-    '130130': ('A', '11'),
-    '123356': ('B', '12'),
-    '123444': ('C', '13'),
-    '141414': ('D', '14'),
-    '141333': ('E', '22'),
+    130130: ('A', 11),
+    123356: ('B', 12),
+    123444: ('C', 13),
+    141414: ('D', 14),
+    141333: ('E', 22),
 }
 
 with open('simple_dict.json', 'w') as file:
@@ -51,15 +52,14 @@ with open('my_dict.json', 'w') as file:
     json.dump(my_dict, file)
 
 print('hw_8_task_4')
-with open('my_dict.json', 'r') as f:
+with open('simple_dict.json', 'r') as f:
     json_data = json.load(f)
     print(json_data)
 
 csv_row_names = [['id', 'name', 'age', 'phone']]
 
-# for row in my_dict:
-    # csv_row_names.append([row['id'], row['name'], row['age'], row.get('phone', '')])  # get?
-
-with open('my_dict.csv', 'w', newline='', encoding='utf-8') as f:
+with open('simple_dict.csv', 'w', newline='', encoding='utf-8') as f:
     wr_csv = csv.writer(f)
-    wr_csv.writerows(csv_row_names)
+    wr_csv.writerow(['id', 'name', 'age', 'phone'])
+    for item_key in json_data:
+        wr_csv.writerow([item_key, json_data[item_key][0], json_data[item_key][1], random.randint(100000, 200000)])
