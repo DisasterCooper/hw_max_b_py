@@ -1,0 +1,23 @@
+[33mcommit 26b352f41c7add549523562a459641a82d986962[m[33m ([m[1;36mHEAD -> [m[1;32mhw_8[m[33m)[m
+Author: DisasterCooper <bajdukmax@gmail.com>
+Date:   Wed Mar 22 21:06:04 2023 +0300
+
+    Add hw_8
+
+[33mcommit db0f8c0f0fb329acf1681f625ef63d110a13a4e7[m
+Author: DisasterCooper <bajdukmax@gmail.com>
+Date:   Tue Mar 21 23:06:17 2023 +0300
+
+    Rename directory files
+
+[33mcommit df601dd911ea2b42fb304818675acef0b5986801[m
+Author: DisasterCooper <bajdukmax@gmail.com>
+Date:   Tue Mar 21 22:54:01 2023 +0300
+
+    Rename hw directory
+
+[33mcommit 0669518c70794ab1a48f2f509f25ff64427cb728[m
+Author: DisasterCooper <bajdukmax@gmail.com>
+Date:   Tue Mar 21 22:37:37 2023 +0300
+
+    Init git repo
