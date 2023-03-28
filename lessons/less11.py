@@ -164,5 +164,3 @@ print(to_do_list.get_list())
 
 
 to_do_list.save_file()
-
-
