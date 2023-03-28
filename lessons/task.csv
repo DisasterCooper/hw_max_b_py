@@ -1,0 +1,2 @@
+name_task,task,priority
+"['first', <PriorityEnum.HIGH: 2>, <PriorityEnum.LOW: 0>]","['first3', 'edit task', <PriorityEnum.HIGH: 2>]","['first4', 'first task', <PriorityEnum.LOW: 0>]"
