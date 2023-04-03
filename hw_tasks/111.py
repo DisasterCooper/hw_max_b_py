@@ -84,3 +84,7 @@ while True:
         print('bot выбрал paper, вы выиграли.')
     elif bot == user:
         print('Ничья.')
+    break
+
+print('hw_12_task_3')
+
