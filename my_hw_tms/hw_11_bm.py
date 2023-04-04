@@ -13,6 +13,10 @@ class OperationEnum(Enum):
     MINUS = 'withdrawal'
 
 
+class NotMoneyError(Exception):
+    pass
+
+
 class HistoryOpp:
     def __init__(
             self,
@@ -34,49 +38,39 @@ class BankAcc:
             self,
             bank_acc: str,
             balance: float,
-            # date_time: datetime,
-            history_opp: list[HistoryOpp]
     ) -> None:
         self.bank_acc = bank_acc
         self.balance = balance
-        # self.date_time = datetime
-        self.history_opp = list[HistoryOpp] = []  # как передать историю, не могу понять
+        self.date_time = datetime
+        self.history_opp: list[HistoryOpp] = []  # как передать историю, не могу понять
 
     @property
     def check_balance(self):
         return f'Balance {self.bank_acc} = {self.balance}'
 
     def __repr__(self):
-        return f'{self.bank_acc}, {OperationEnum}, {datetime},balance {self.balance}'
-
-    def create_bank_acc(self, bank_acc: str, balance: float):
-        self.bank_acc.append(bank_acc)
-        self.balance = balance
-        if bank_acc in self.bank_acc:
-            return f'{self.bank_acc} is already exists'
+        return f'{self.bank_acc},balance {self.balance}'
 
     def income(self, amount: float):
         self.balance += amount
-        date_time = datetime.now()
-        print(f'{date_time}')
-        self.history_opp.append(OperationEnum.PLUS, amount, date_time)
-        # print(f'{self.bank_acc}, {OperationEnum}, {datetime},balance {self.balance}')
+        self.history_opp.append(HistoryOpp(OperationEnum.PLUS, amount, datetime.now()))
 
     def withdrawal(self, amount: float):
         if self.balance < amount:
-            print('недостаточно средств')
-            return
+            raise NotMoneyError
         self.balance -= amount
-        date_time = datetime.now()
-        print(f'{date_time}')
-        self.history_opp.append(OperationEnum.MINUS, amount, datetime)
-        # print(f'{self.bank_acc}, {OperationEnum}, {datetime},balance {self.balance}')
+        self.history_opp.append(HistoryOpp(OperationEnum.MINUS, amount, datetime.now()))
 
 
 user1 = BankAcc('A', 1000)
-print(user1)
-# print(user1.check_balance)
-# user1.income(200)
-# print(user1.check_balance)
-
-
+print(user1.check_balance)
+user1.income(200)
+print(user1.check_balance)
+user1.withdrawal(1000)
+print(user1.check_balance)
+try:
+    user1.withdrawal(1000)
+except NotMoneyError:
+    print('недостаточно средств')
+finally:
+    print(user1.check_balance)
